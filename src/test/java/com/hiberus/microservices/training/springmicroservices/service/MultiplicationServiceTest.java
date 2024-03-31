@@ -24,7 +24,9 @@ public class MultiplicationServiceTest {
 
     @Test
     public void createRandomMultiplicationTest(){
-
+/**
+ * this will fail since we have no implementation of the random generator service
+ */
         //BDD: given our mocked service generator with return 50 and 30
         given(randomGeneratorService.generateRandomFactor()).willReturn(50,30);
 
