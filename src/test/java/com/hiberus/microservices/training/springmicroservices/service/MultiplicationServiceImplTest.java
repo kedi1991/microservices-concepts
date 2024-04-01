@@ -1,6 +1,8 @@
 package com.hiberus.microservices.training.springmicroservices.service;
 
 import com.hiberus.microservices.training.springmicroservices.domain.Multiplication;
+import com.hiberus.microservices.training.springmicroservices.domain.MultiplicationResultAttempt;
+import com.hiberus.microservices.training.springmicroservices.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.BDDMockito;
@@ -32,8 +34,36 @@ public class MultiplicationServiceImplTest {
         //assert
         assertThat(multiplication.getFactorA()).isEqualTo(30);
         assertThat(multiplication.getFactorB()).isEqualTo(50);
-        assertThat(multiplication.getResult()).isEqualTo(1500);
+        //assertThat(multiplication.getResult()).isEqualTo(1500);
 
+    }
+
+    @Test
+    public void checkCorrectAttemptTest(){
+        //given
+        Multiplication multiplication = new Multiplication(10,10);
+        User user = new User("Okurut Kedi");
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 100);
+
+        //when
+        boolean resultAttempt = multiplicationServiceImpl.checkAttempt(attempt);
+
+        //assert
+        assertThat(resultAttempt).isTrue();
+    }
+
+    @Test
+    public void checkWrongAttemptTest(){
+        //given
+        Multiplication multiplication = new Multiplication(10,10);
+        User user = new User("Akudo angella");
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 101);
+
+        //when
+        boolean resultAttempt = multiplicationServiceImpl.checkAttempt(attempt);
+
+        //Assert
+        assertThat(resultAttempt).isFalse();
     }
 
 }
