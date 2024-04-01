@@ -3,49 +3,27 @@ package com.hiberus.microservices.training.springmicroservices.domain;
 /**
  * A class that represents a multiplication in the application
  */
-public class Multiplication {
 
-    private int factorA;
-    private int factorB;
-    private int result;
+import lombok.*;
 
-    public Multiplication(int factorA, int factorB){
-        this.factorA = factorA;
-        this.factorB = factorB;
+/**
+ * using lombok
+ */
 
-        this.result = factorA * factorB;
+@RequiredArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+public final class Multiplication {
+
+    //Both factors
+    private final int factorA;
+    private final int factorB;
+
+    //empty constructor for JSON (de)serialization
+    Multiplication(){
+        this(0,0);
     }
 
-    public int getFactorA() {
-        return factorA;
-    }
-
-    public void setFactorA(int factorA) {
-        this.factorA = factorA;
-    }
-
-    public int getFactorB() {
-        return factorB;
-    }
-
-    public void setFactorB(int factorB) {
-        this.factorB = factorB;
-    }
-
-    public int getResult() {
-        return result;
-    }
-
-    public void setResult(int result) {
-        this.result = result;
-    }
-
-    @Override
-    public String toString() {
-        return "Multiplication{" +
-                "factorA=" + factorA +
-                ", factorB=" + factorB +
-                ", result=" + result +
-                '}';
-    }
 }
